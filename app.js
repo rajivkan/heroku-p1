@@ -92,7 +92,7 @@ console.log("Server {product} start working");
 
 // Protect dashboard route with JWT
 app.get('/dashboard', function(req, res) { 
-console.log("RESULT++++++++++++++DASHBOARD"); 
+console.log("RESULT++++++++++++++DASHBOARD================"); 
   res.send({
                 success: true,
                 message: '/dashboard'
