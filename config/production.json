@@ -1,0 +1,16 @@
+{
+	// Server config
+	"server": {
+		"listenPort": 8080,
+        "secretKey": "PRYPBEZMdj9TnGkN",
+	},
+    // Database configs 
+    "database": {
+    	"dbEnv": "production",
+        "dbConfig": {
+            "host": "localhost",
+            "port": 27017,
+            "dbName": "product"
+        },
+    }
+}
