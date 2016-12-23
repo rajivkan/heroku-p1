@@ -68,7 +68,7 @@ app.use(jwtsso({
     sharedSecret: "zY6OgVD4CCovzan8",
  
     // Public mountpoint for this app 
-    mountPoint: "http://https://rajiv-p1.herokuapp.com",
+    mountPoint: "https://rajiv-p1.herokuapp.com",
  
     // Set max age in seconds for the tokens 
     // Defaults to 60 seconds 
