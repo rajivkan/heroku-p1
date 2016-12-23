@@ -59,13 +59,13 @@ app.use(cookieParser(config.cookieSecret));
 app.use(cookieParser({ secret: "zY6OgVD4CCovzan8" }));
 app.use(jwtsso({
     // Service endpoint that issues the jwt tokens 
-    authEndpoint: "https://rajiv-test.herokuapp.com/sso",
+    authEndpoint: "http://rajiv-test.herokuapp.com/sso",
  
     // Shared secret string with the above service 
     sharedSecret: "zY6OgVD4CCovzan8",
  
     // Public mountpoint for this app 
-    mountPoint: "https://rajiv-p1.herokuapp.com",
+    mountPoint: "http://rajiv-p1.herokuapp.com",
  
     // Set max age in seconds for the tokens 
     // Defaults to 60 seconds 
