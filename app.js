@@ -13,9 +13,6 @@ var app = express();
 
 app.set('port', (process.env.PORT || 5000));
 
-app.get('/', function(request, response) {
-  response.end("hi ");
-});
 
 // Middleware necessary for REST API's
 app.use(bodyParser.urlencoded({
@@ -94,7 +91,8 @@ app.use(function(req, res, next){
 console.log("Server {product} start working");
 
 // Protect dashboard route with JWT
-app.get('/dashboard', function(req, res) {  
+app.get('/dashboard', function(req, res) { 
+console.log("RESULT++++++++++++++DASHBOARD"); 
   res.send({
                 success: true,
                 message: '/dashboard'
