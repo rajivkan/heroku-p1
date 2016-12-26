@@ -25,7 +25,7 @@ app.use(methodOverride('X-HTTP-Method-Override'));
 app.use(function(req, res, next) {
     console.log("=====================================method==========================");
     console.log(req.method);
-    if (req.method === 'OPTIONS' || req.method === 'GET' || req.method === 'POST') {
+    if (req.method === 'OPTIONS') { //  || req.method === 'GET' || req.method === 'POST'
         res.header('Access-Control-Allow-Origin', '*');
         res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
         res.header('Access-Control-Allow-Headers', 'Accept, Authorization, Content-Type, X-Requested-With, Range');
