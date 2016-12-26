@@ -23,6 +23,7 @@ app.use(methodOverride('X-HTTP-Method-Override'));
 
 // CORS Support
 app.use(function(req, res, next) {
+    console.log("=====================================method==========================");
     console.log(req.method);
     if (req.method === 'OPTIONS' || req.method === 'GET' || req.method === 'POST') {
         res.header('Access-Control-Allow-Origin', '*');
