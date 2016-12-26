@@ -22,20 +22,20 @@ app.use(bodyParser.json());
 app.use(methodOverride('X-HTTP-Method-Override'));
 
 // CORS Support
-// app.use(function(req, res, next) {
-//     console.log(req.method);
-//     if (req.method === 'OPTIONS' || req.method === 'GET' || req.method === 'POST') {
-//         res.header('Access-Control-Allow-Origin', '*');
-//         res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
-//         res.header('Access-Control-Allow-Headers', 'Accept, Authorization, Content-Type, X-Requested-With, Range');
-//         res.header('Access-Control-Expose-Headers', 'Content-Length');
-//         //res.header('Access-Control-Allow-Credentials', true);
-//         //res.send(200);
-//         return next();
-//     } else {
-//         return next();
-//     }
-// });
+app.use(function(req, res, next) {
+    console.log(req.method);
+    if (req.method === 'OPTIONS' || req.method === 'GET' || req.method === 'POST') {
+        res.header('Access-Control-Allow-Origin', '*');
+        res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+        res.header('Access-Control-Allow-Headers', 'Accept, Authorization, Content-Type, X-Requested-With, Range');
+        res.header('Access-Control-Expose-Headers', 'Content-Length');
+        //res.header('Access-Control-Allow-Credentials', true);
+        //res.send(200);
+        return next();
+    } else {
+        return next();
+    }
+});
 
 
 // Config details based on env
@@ -59,13 +59,13 @@ app.use(cookieParser(config.cookieSecret));
 app.use(cookieParser({ secret: "zY6OgVD4CCovzan8" }));
 app.use(jwtsso({
     // Service endpoint that issues the jwt tokens 
-    authEndpoint: "http://rajiv-test.herokuapp.com/sso",
+    authEndpoint: "https://rajiv-test.herokuapp.com/sso",
  
     // Shared secret string with the above service 
     sharedSecret: "zY6OgVD4CCovzan8",
  
     // Public mountpoint for this app 
-    mountPoint: "http://rajiv-p1.herokuapp.com",
+    mountPoint: "https://rajiv-p1.herokuapp.com",
  
     // Set max age in seconds for the tokens 
     // Defaults to 60 seconds 
