@@ -7,11 +7,46 @@ var express = require('express'),
 	jwtsso = require('jwtsso'),
 	jwt = require("jwt-simple");
 var _ = require('lodash');
+//var cors = require('cors');
 
 // Create the application
 var app = express();
+app.all('/*', function(req, res, next) {
+      res.header("Access-Control-Allow-Origin", "*");
+      res.header("Access-Control-Allow-Headers", "X-Requested-With, Content-Type, Authorization");
+      res.header("Access-Control-Allow-Methods", "GET, POST","PUT");
+      next();
+    });
 
-app.set('port', (process.env.PORT || 5000));
+// app.use(function(req, res, next) {
+//     if (req.method === 'OPTIONS') {
+//         res.header('Access-Control-Allow-Origin', '*');
+//         //res.header('Access-Control-Allow-Methods', 'GET, POST');
+//         res.header('Access-Control-Allow-Headers', 'Accept, Authorization, Content-Type, X-Requested-With, Range');
+//         res.header('Access-Control-Expose-Headers', 'Content-Length');
+//         res.header('Access-Control-Allow-Credentials', 'true');
+//         res.send(200);
+//         //return next();
+//     } else {
+//         return next();
+//     }
+// });
+app.set('port', (process.env.PORT || 3001));
+
+app.use(express.static(__dirname + '/public'));
+
+  
+
+app.get('/', function(req, res, next) {
+  // Handle the get for this route
+});
+
+app.post('/', function(req, res, next) {
+ // Handle the post for this route
+});
+
+// CORS Support
+//app.options('/dashboard', cors());
 
 
 // Middleware necessary for REST API's
@@ -20,24 +55,6 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 app.use(methodOverride('X-HTTP-Method-Override'));
-
-// CORS Support
-app.use(function(req, res, next) {
-    console.log("=====================================method==========================");
-    console.log(req.method);
-    res.header('Access-Control-Allow-Origin', '*');
-        res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
-        res.header('Access-Control-Allow-Headers', 'Accept, Authorization, Content-Type, X-Requested-With, Range');
-        res.header('Access-Control-Expose-Headers', 'Content-Length');
-    if (req.method === 'OPTIONS') { //  || req.method === 'GET' || req.method === 'POST'
-        
-        //res.header('Access-Control-Allow-Credentials', true);
-        res.send(200);
-        //return next();
-    } else {
-        return next();
-    }
-});
 
 
 // Config details based on env
@@ -61,13 +78,13 @@ app.use(cookieParser(config.cookieSecret));
 app.use(cookieParser({ secret: "zY6OgVD4CCovzan8" }));
 app.use(jwtsso({
     // Service endpoint that issues the jwt tokens 
-    authEndpoint: "https://rajiv-test.herokuapp.com/sso",
+    authEndpoint: "http://127.0.0.1:3000/sso",
  
     // Shared secret string with the above service 
     sharedSecret: "zY6OgVD4CCovzan8",
  
     // Public mountpoint for this app 
-    mountPoint: "https://rajiv-p1.herokuapp.com",
+    mountPoint: "http://127.0.0.1:3001",
  
     // Set max age in seconds for the tokens 
     // Defaults to 60 seconds 
